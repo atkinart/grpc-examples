@@ -1,0 +1,28 @@
+apply plugin: 'org.springframework.boot'
+
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+    mainClassName = "ru.aatkin.grpc.ServerApplication"
+
+    manifest {
+        attributes 'Start-Class': 'ru.aatkin.grpc.ServerApplication'
+    }
+}
+
+dependencies {
+
+    implementation project(':proto-stub')
+
+    implementation 'io.github.lognet:grpc-spring-boot-starter:3.0.0'
+    
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}

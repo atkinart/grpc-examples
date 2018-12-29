@@ -1,0 +1,29 @@
+apply plugin: 'org.springframework.boot'
+
+group = 'ru.aatkin.grpc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 11
+
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+    mainClassName = "ru.aatkin.grpc.ClientApplication"
+
+    manifest {
+        attributes 'Start-Class': 'ru.aatkin.grpc.ClientApplication'
+    }
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+    implementation('org.springframework.boot:spring-boot-starter-webflux')
+    implementation('org.springframework.shell:spring-shell-starter:2.0.0.RELEASE')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    compileOnly('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('io.projectreactor:reactor-test')
+}
